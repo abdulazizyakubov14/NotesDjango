@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import query
 from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView,UpdateView
@@ -27,3 +28,13 @@ class DeletNote(DeleteView):
     model = Notes
     success_url = '/'
     template_name = 'delet.html'
+
+def search(request):
+    s = request.GET.get('search',None)
+    note = Notes.objects.filter(title__icontains=s)
+    context = {
+        'note':note,
+        
+    }
+
+    return render(request,'search.html',context)

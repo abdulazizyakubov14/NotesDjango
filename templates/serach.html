@@ -18,10 +18,10 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'note:create' %}">Eslatma Qo'shish</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'note:create' %}">Create</a>
               </li>
             </ul>
-            <form action="{% url 'note:search' %}" method="get" class="d-flex">
+            <form action="{% url 'movie:search' %}" method="get" class="d-flex">
               <input class="form-control me-2"  type="text" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
@@ -30,45 +30,20 @@
       </nav><br><br><br>
 <div class="container">
     <div class="row">
-    
-    {% if object_list %}
-      {% for object in object_list %}
-    <div class="col-lg-3">
-        <div class="card" style="width: 18rem;">
-          
-          {% if object.image %}
-          <img src="{{object.image.url}}" width="200" height="300" class="card-img-top" alt="...">    
-          
-          {% else %}
-          <img src="https://i.pinimg.com/originals/ae/ca/a0/aecaa0653392b71a1d42ad1ab3d79f5e.jpg" width="200" height="300" class="card-img-top" alt="...">    
-          {% endif %}
-            
-
-            <div class="card-body">
-              <h5 class="card-title">{{object.title}}</h5>
-              <p class="card-text">{{object.body}}</p>
-              <a href="{% url 'note:update' object.id %}" class="btn btn-primary">Yangilash</a>
-              <a href="{% url 'note:delete' object.id %}" class="btn btn-danger">O'chirish</a>
-            </div>
-          </div><br><br>
-    </div>   
-    
-        {% endfor %}</div>
-
-        {% else %}
-        <div class="jumbotron">
-          <h1 class="display-3">Assalomu alaykum!</h1>
-          <p class="lead">Bu sayit sizga qanday yordam bera oladi?</p>
-          <hr class="my-2">
-          <p>Ushbu sayitda siz o'zingiz uchun muhim ishlar yoki eslatmalrin yozib borishingiz mumkun.</p>
-          <p class="lead">
-            <a class="btn btn-primary btn-lg" href="{% url 'note:create'%}" role="button">Eslatma qo'shish</a>
-          </p>
+    {% for object in note %}
+<div class="col-lg-3">
+    <div class="card" style="width: 18rem;">
+        <img src="{{object.image.url}}" width="200" height="300" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{object.title}}</h5>
+          <p class="card-text">{{object.body}}</p>
+          <a href="{% url 'note:update' object.id %}" class="btn btn-primary">Update</a>
+          <a href="{% url 'note:delete' object.id %}" class="btn btn-danger">Delete</a>
         </div>
-        
-    {% endif %}
-          
+      </div>
+</div>   
 
+    {% endfor %}</div>
         
 
 </div>

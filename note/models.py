@@ -5,4 +5,4 @@ from django.db import models
 class Notes(models.Model):
     title = models.CharField('title', max_length=330)
     body = models.TextField()
-    image = models.ImageField('rasim', upload_to='poster/',)
+    image = models.ImageField('rasim', upload_to='poster/',blank=True,null=True)
