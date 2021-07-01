@@ -10,6 +10,7 @@ class HomeView(ListView):
     model = Notes
     template_name = 'index.html'
     ordering = ['-id']
+    paginate_by = 4
 
 class CreateNote(CreateView):
     model = Notes
