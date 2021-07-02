@@ -33,7 +33,9 @@ class DeletNote(DeleteView):
 def search(request):
     q = request.GET.get('search',None)
     note = Notes.objects.filter(title__icontains=q)
+    res = len(note)
     context = {
+        'res':res,
         'note':note,
         
     }
