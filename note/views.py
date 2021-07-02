@@ -31,11 +31,11 @@ class DeletNote(DeleteView):
     template_name = 'delet.html'
 
 def search(request):
-    s = request.GET.get('search',None)
-    note = Notes.objects.filter(title__icontains=s)
+    q = request.GET.get('search',None)
+    note = Notes.objects.filter(title__icontains=q)
     context = {
         'note':note,
         
     }
 
-    return render(request,'search.html',context)
+    return render(request,'serach.html',context)

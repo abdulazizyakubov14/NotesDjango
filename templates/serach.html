@@ -21,8 +21,8 @@
                 <a class="nav-link active" aria-current="page" href="{% url 'note:create' %}">Create</a>
               </li>
             </ul>
-            <form action="{% url 'movie:search' %}" method="get" class="d-flex">
-              <input class="form-control me-2"  type="text" placeholder="Search" aria-label="Search">
+            <form action="{% url 'note:search' %}" method="get" class="d-flex">
+              <input class="form-control me-2" name="search"  type="text" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
           </div>
@@ -33,7 +33,13 @@
     {% for object in note %}
 <div class="col-lg-3">
     <div class="card" style="width: 18rem;">
-        <img src="{{object.image.url}}" width="200" height="300" class="card-img-top" alt="...">
+      
+      {% if object.image %}
+      <img src="{{object.image.url}}" width="200" height="300" class="card-img-top" alt="...">    
+      
+      {% else %}
+      <img src="https://i.pinimg.com/originals/ae/ca/a0/aecaa0653392b71a1d42ad1ab3d79f5e.jpg" width="200" height="300" class="card-img-top" alt="...">    
+      {% endif %}
         <div class="card-body">
           <h5 class="card-title">{{object.title}}</h5>
           <p class="card-text">{{object.body}}</p>
